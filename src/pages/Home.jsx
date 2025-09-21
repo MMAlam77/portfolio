@@ -20,7 +20,7 @@ export default function Home() {
         transition={{ duration: 1 }}
         className="flex flex-col justify-center flex-1 space-y-6"
       >
-        <h2 className="text-lg sm:text-xl text-blue-600 mt-6 sm:mt-15 mb-0 animate-pulse">
+        <h2 className="text-lg sm:text-xl text-blue-600 mt-12 sm:mt-15 mb-0 animate-pulse">
           Welcome to my portfolio
         </h2>
 
@@ -41,6 +41,8 @@ export default function Home() {
             2000,
             "Shopify Expert",
             2000,
+            "Meta Ads Manager",
+            2000,
             "3D Websites Developer",
             2000,
           ]}
@@ -57,7 +59,7 @@ export default function Home() {
 
         {/* Skills Badges */}
         <div className="flex flex-wrap gap-3">
-          {["React", "Node.js", "MongoDB", "Express", "Tailwind"].map(
+          {["React.js", "Node.js", "MongoDB", "Express.js", "Tailwind.css","Shopify Expert","Meta Ads Manager"].map(
             (skill, index) => (
               <span
                 key={index}
