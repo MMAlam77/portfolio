@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import skillsData from '../data/skillsData';
+import skillsData from '../data/SkillsData';
 
 export default function SkillsPage() {
   useEffect(() => {
