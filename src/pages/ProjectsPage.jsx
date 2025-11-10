@@ -19,7 +19,7 @@ export default function ProjectsPage() {
       if (project === "project1") {
         window.open("https://ecom-omega-eosin.vercel.app/", "_blank");
       } else if (project === "project2") {
-        window.open("https://prescripto-fawn-gamma.vercel.app/", "_blank");
+        window.open("https://mb-plays.vercel.app/", "_blank");
       }
       setLoading((prev) => ({ ...prev, [project]: false }));
     }, 800);
@@ -116,15 +116,15 @@ export default function ProjectsPage() {
           <img
             src={ProjectImg2}
             alt="Doctor Appointment"
-            className="w-full lg:w-1/2 h-[300px] object-cover rounded-xl shadow-2xl"
+            className="w-full lg:w-[700px] h-[350px] object-cover rounded-xl shadow-2xl"
           />
 
           <div className="flex flex-col gap-4 w-full lg:w-1/2">
             <h3 className="text-2xl font-bold text-gray-800 dark:text-white">
-              Doctor Appointment App
+              Watch All Trukish Series with MB Plays
             </h3>
             <p className="text-gray-700 dark:text-gray-300">
-              A responsive appointment booking app where patients can schedule
+              A responsive turkish series website which have all turkish series with urdu subtitles where patients can schedule
               consultations with doctors in real time. Built with React and
               Tailwind CSS for a clean interface and smooth UX.
             </p>
@@ -141,9 +141,9 @@ export default function ProjectsPage() {
             </div>
 
             <ul className="list-disc pl-5 text-gray-700 dark:text-gray-300">
-              <li>Doctor Profiles & Scheduling</li>
+              <li>Audience Freindly palying animations</li>
               <li>Responsive Design</li>
-              <li>Appointment Management</li>
+              <li>All Trukish Series Avalible</li>
               <li>User-Friendly Interface</li>
             </ul>
 
