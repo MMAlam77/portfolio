@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 import { FaExternalLinkAlt, FaGithub } from "react-icons/fa";
 import ProjectImg1 from "../assets/project1.png";
 import ProjectImg2 from "../assets/project2.png";
@@ -26,59 +27,77 @@ export default function ProjectsPage() {
   };
 
   return (
-    <div className="min-h-screen w-full overflow-x-hidden overflow-y-auto bg-gray-300 dark:bg-gray-800 text-gray-900 dark:text-white flex flex-col items-center p-8 gap-12 scroll-mt-24 transition-colors duration-300">
+    <div className="min-h-screen w-full overflow-x-hidden overflow-y-auto bg-gray-200 dark:bg-gray-900 text-gray-900 dark:text-white flex flex-col items-center p-6 gap-8 scroll-mt-24 transition-colors duration-300">
       {/* Heading */}
-      <h2
-        data-aos="fade-down"
-        className="text-4xl font-bold text-center text-blue-600 mb-2"
+      <motion.h2
+        initial={{ opacity: 0, y: -20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        viewport={{ once: true }}
+        className="text-3xl sm:text-4xl font-bold text-center text-blue-600 mb-1"
       >
         Featured Projects
-      </h2>
+      </motion.h2>
 
-      <p
-        data-aos="fade-up"
-        className="text-center text-gray-600 dark:text-gray-300 mb-8"
+      <motion.p
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.1 }}
+        viewport={{ once: true }}
+        className="text-center text-sm sm:text-base text-gray-600 dark:text-gray-300 mb-6 max-w-2xl"
       >
         Showcasing my best work in web development and design
-      </p>
+      </motion.p>
 
       {/* Projects Section */}
-      <div className="flex flex-col gap-16 w-full max-w-7xl">
+      <div className="flex flex-col gap-10 w-full max-w-7xl">
         {/* Project 1 */}
-        <div
-          data-aos="fade-right"
-          className="flex flex-col lg:flex-row items-center gap-12"
+        <motion.div
+          initial={{ opacity: 0, x: -50 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.7 }}
+          viewport={{ once: true }}
+          className="flex flex-col lg:flex-row items-center gap-6"
         >
-          <img
+          <motion.img
+            whileHover={{ scale: 1.05 }}
+            transition={{ duration: 0.4 }}
             src={ProjectImg1}
             alt="E-Commerce Store"
-            className="w-full lg:w-1/2 h-[300px] object-cover rounded-xl shadow-2xl"
+            className="w-full lg:w-1/2 h-[200px] object-cover rounded-lg shadow-lg"
           />
 
-          <div className="flex flex-col gap-4 w-full lg:w-1/2">
-            <h3 className="text-2xl font-bold text-gray-800 dark:text-white">
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.7, delay: 0.1 }}
+            viewport={{ once: true }}
+            className="flex flex-col gap-3 w-full lg:w-1/2"
+          >
+            <h3 className="text-xl sm:text-2xl font-bold text-gray-800 dark:text-white">
               E-Commerce Store
             </h3>
-            <p className="text-gray-700 dark:text-gray-300">
+            <p className="text-sm sm:text-base text-gray-700 dark:text-gray-300">
               A fully functional e-commerce platform built using React, Node.js,
               MongoDB, and Tailwind CSS. Features seamless user experience,
               modern design, product management, and secure checkout.
             </p>
 
-            <div className="flex flex-wrap gap-2 mt-2">
+            <div className="flex flex-wrap gap-2 mt-1">
               {["React", "Node.js", "MongoDB", "Tailwind CSS", "Express"].map(
                 (tech, index) => (
-                  <span
+                  <motion.span
                     key={index}
-                    className="bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-300 px-3 py-1 rounded-full text-sm"
+                    whileHover={{ scale: 1.05 }}
+                    className="bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-300 px-2.5 py-1 rounded-full text-xs font-medium"
                   >
                     {tech}
-                  </span>
+                  </motion.span>
                 )
               )}
             </div>
 
-            <ul className="list-disc pl-5 text-gray-700 dark:text-gray-300">
+            <ul className="list-disc pl-4 text-sm text-gray-700 dark:text-gray-300 space-y-1">
               <li>Modern Product Display</li>
               <li>Responsive Design</li>
               <li>User Authentication</li>
@@ -87,88 +106,129 @@ export default function ProjectsPage() {
             </ul>
 
             {/* Buttons */}
-            <div className="flex flex-nowrap gap-3 mt-4">
-              <button
+            <div className="flex flex-wrap gap-2 mt-3">
+              <motion.button
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.95 }}
                 onClick={() => handleDemoClick("project1")}
-                className="flex items-center gap-2 px-4 sm:px-6 py-2 sm:py-3 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-300 rounded-lg font-semibold text-sm sm:text-lg hover:bg-blue-500 hover:text-white active:scale-95 transition transform hover:translate-y-1 hover:shadow-lg shadow-gray-400 dark:shadow-gray-700 whitespace-nowrap"
+                className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg font-semibold text-sm hover:bg-blue-700 shadow-md transition"
               >
-                <FaExternalLinkAlt className="text-base sm:text-xl" />
+                <FaExternalLinkAlt className="text-sm" />
                 {loading.project1 ? "Loading..." : "Live Demo"}
-              </button>
+              </motion.button>
 
-              <a
+              <motion.a
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.95 }}
                 href="https://github.com/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 px-4 sm:px-6 py-2 sm:py-3 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-300 rounded-lg font-semibold text-sm sm:text-lg hover:bg-blue-500 hover:text-white active:scale-95 transition transform hover:translate-y-1 hover:shadow-lg shadow-gray-400 dark:shadow-gray-700 whitespace-nowrap"
+                className="flex items-center gap-2 px-4 py-2 bg-gray-700 dark:bg-gray-700 text-white rounded-lg font-semibold text-sm hover:bg-gray-800 shadow-md transition"
               >
-                <FaGithub className="text-base sm:text-xl" /> View Code
-              </a>
+                <FaGithub className="text-sm" /> View Code
+              </motion.a>
             </div>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
+        {/* ================= PROJECT 2 ================= */}
 
-        {/* Project 2 */}
-        <div
-          data-aos="fade-left"
-          className="flex flex-col lg:flex-row-reverse items-center gap-12"
+        <motion.div
+          initial={{ opacity: 0, x: 80 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: false, amount: 0.3 }}
+          transition={{ duration: 0.8 }}
+          className="flex flex-col lg:flex-row-reverse items-center gap-6"
         >
-          <img
+
+          <motion.img
+            initial={{ opacity: 0, x: 80 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: false, amount: 0.3 }}
+            transition={{ duration: 0.8 }}
+            whileHover={{ scale: 1.05 }}
             src={ProjectImg2}
-            alt="Doctor Appointment"
-            className="w-full lg:w-[700px] h-[350px] object-cover rounded-xl shadow-2xl"
+            alt="MB Plays"
+            className="w-full lg:w-1/2 h-[200px] object-cover rounded-lg shadow-lg"
           />
 
-          <div className="flex flex-col gap-4 w-full lg:w-1/2">
-            <h3 className="text-2xl font-bold text-gray-800 dark:text-white">
-              Watch All Trukish Series with MB Plays
+          <motion.div
+            initial={{ opacity: 0, x: -80 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: false, amount: 0.3 }}
+            transition={{ duration: 0.8, delay: 0.15 }}
+            className="flex flex-col gap-3 w-full lg:w-1/2"
+          >
+
+            <h3 className="text-xl sm:text-2xl font-bold text-gray-800 dark:text-white">
+              Watch All Turkish Series with MB Plays
             </h3>
-            <p className="text-gray-700 dark:text-gray-300">
-              A responsive turkish series website which have all turkish series with urdu subtitles where patients can schedule
-              consultations with doctors in real time. Built with React and
-              Tailwind CSS for a clean interface and smooth UX.
+
+            <p className="text-sm sm:text-base text-gray-700 dark:text-gray-300">
+              A responsive Turkish series website where users can watch
+              Turkish series with Urdu subtitles. Built using React,
+              Tailwind CSS and Node.js for a smooth user experience.
             </p>
 
-            <div className="flex flex-wrap gap-2 mt-2">
-              {["React", "Tailwind", "Node.js"].map((tech, index) => (
-                <span
-                  key={index}
-                  className="bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-300 px-3 py-1 rounded-full text-sm"
+            <div className="flex flex-wrap gap-2 mt-1">
+
+              {["React", "Tailwind CSS", "Node.js"].map((tech) => (
+
+                <motion.span
+                  key={tech}
+                  initial={{ opacity: 0, scale: 0.7 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: false, amount: 0.3 }}
+                  transition={{ duration: 0.3 }}
+                  whileHover={{ scale: 1.1 }}
+                  className="bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-300 px-2.5 py-1 rounded-full text-xs font-medium"
                 >
                   {tech}
-                </span>
+                </motion.span>
+
               ))}
+
             </div>
 
-            <ul className="list-disc pl-5 text-gray-700 dark:text-gray-300">
-              <li>Audience Freindly palying animations</li>
+            <ul className="list-disc pl-4 text-sm text-gray-700 dark:text-gray-300 space-y-1">
+              <li>Audience-Friendly Playing Animations</li>
               <li>Responsive Design</li>
-              <li>All Trukish Series Avalible</li>
+              <li>All Turkish Series Available</li>
               <li>User-Friendly Interface</li>
             </ul>
 
-            {/* Buttons */}
-            <div className="flex flex-nowrap gap-3 mt-4">
-              <button
-                onClick={() => handleDemoClick("project2")}
-                className="flex items-center gap-2 px-4 sm:px-6 py-2 sm:py-3 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-300 rounded-lg font-semibold text-sm sm:text-lg hover:bg-blue-500 hover:text-white active:scale-95 transition transform hover:translate-y-1 hover:shadow-lg shadow-gray-400 dark:shadow-gray-700 whitespace-nowrap"
-              >
-                <FaExternalLinkAlt className="text-base sm:text-xl" />
-                {loading.project2 ? "Loading..." : "Live Demo"}
-              </button>
+            <div className="flex flex-wrap gap-2 mt-3">
 
-              <a
+              <motion.button
+                whileHover={{ scale: 1.05, y: -3 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => handleDemoClick("project2")}
+                className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg font-semibold text-sm hover:bg-blue-700 shadow-md"
+              >
+                <FaExternalLinkAlt />
+                {loading.project2 ? "Loading..." : "Live Demo"}
+              </motion.button>
+
+              <motion.a
+                whileHover={{ scale: 1.05, y: -3 }}
+                whileTap={{ scale: 0.95 }}
                 href="https://github.com/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 px-4 sm:px-6 py-2 sm:py-3 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-300 rounded-lg font-semibold text-sm sm:text-lg hover:bg-blue-500 hover:text-white active:scale-95 transition transform hover:translate-y-1 hover:shadow-lg shadow-gray-400 dark:shadow-gray-700 whitespace-nowrap"
+                className="flex items-center gap-2 px-4 py-2 bg-gray-700 text-white rounded-lg font-semibold text-sm hover:bg-gray-800 shadow-md"
               >
-                <FaGithub className="text-base sm:text-xl" /> View Code
-              </a>
+                <FaGithub />
+                View Code
+              </motion.a>
+
             </div>
-          </div>
-        </div>
+
+          </motion.div>
+
+        </motion.div>
+
       </div>
+
     </div>
   );
 }
+        

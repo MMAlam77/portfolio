@@ -9,9 +9,9 @@ import SkillsPage from "./pages/SkillsPage";
 
 function App() {
   return (
-    <div className="flex flex-col min-h-screen bg-gray-100 dark:bg-gray-900 transition-colors duration-300">
+    <div className="flex flex-col min-h-screen overflow-x-hidden bg-gray-100 dark:bg-gray-900 transition-colors duration-300">
       <Navbar />
-      <main className="flex-grow bg-gray-100 dark:bg-gray-900 transition-colors duration-300">
+      <main className="flex-grow overflow-x-hidden bg-gray-100 dark:bg-gray-900 transition-colors duration-300 lg:ml-60">
         <section id="home" className="min-h-screen">
           <Home />
         </section>

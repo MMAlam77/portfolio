@@ -1,12 +1,13 @@
 import { useState, useEffect } from 'react';
-import { FaBars, FaTimes, FaMoon, FaSun, FaArrowUp } from 'react-icons/fa';
-import { motion, AnimatePresence } from 'framer-motion';
+import { FaMoon, FaSun, FaArrowUp, FaHome, FaUser, FaBriefcase, FaProjectDiagram, FaCode, FaEnvelope } from 'react-icons/fa';
+import { motion } from 'framer-motion';
 import { Link as ScrollLink, animateScroll as scroll } from 'react-scroll';
+import ProfileImg from '../assets/doc.png';
 
 export default function Navbar() {
-  const [menuOpen, setMenuOpen] = useState(false);
   const [darkMode, setDarkMode] = useState(false);
   const [showScrollButton, setShowScrollButton] = useState(false);
+  const [typedText, setTypedText] = useState('');
 
   const toggleDarkMode = () => {
     setDarkMode(!darkMode);
@@ -17,7 +18,14 @@ export default function Navbar() {
     }
   };
 
-  const links = ['home', 'about', 'experience', 'projects', 'skills', 'contact'];
+  const links = [
+    { name: 'home', icon: FaHome },
+    { name: 'about', icon: FaUser },
+    { name: 'experience', icon: FaBriefcase },
+    { name: 'projects', icon: FaProjectDiagram },
+    { name: 'skills', icon: FaCode },
+    { name: 'contact', icon: FaEnvelope },
+  ];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -46,141 +54,119 @@ export default function Navbar() {
     }),
   };
 
-  const mobileNavVariants = {
-    hidden: { opacity: 0, x: 50 },
-    visible: (index) => ({
-      opacity: 1,
-      x: 0,
-      transition: {
-        type: 'spring',
-        stiffness: 500,
-        damping: 30,
-        delay: index * 0.1,
-      },
-    }),
-  };
+  useEffect(() => {
+    const phrases = ['MERN Stack Developer', 'React Specialist', 'UI/UX Designer'];
+    let phraseIndex = 0;
+    let charIndex = 0;
+    let deleting = false;
+
+    const typeLoop = setInterval(() => {
+      const current = phrases[phraseIndex];
+
+      if (!deleting && charIndex < current.length) {
+        setTypedText(current.slice(0, charIndex + 1));
+        charIndex += 1;
+      } else if (deleting && charIndex > 0) {
+        setTypedText(current.slice(0, charIndex - 1));
+        charIndex -= 1;
+      } else {
+        deleting = !deleting;
+        if (!deleting) {
+          phraseIndex = (phraseIndex + 1) % phrases.length;
+        }
+      }
+    }, 90);
+
+    return () => clearInterval(typeLoop);
+  }, []);
 
   return (
-    <header className="w-full fixed top-0 left-0 bg-white dark:bg-gray-900 shadow-lg z-50">
-      <div className="flex justify-between items-center p-4 max-w-7xl mx-auto">
-        <h1 className="text-2xl font-bold text-blue-600">Mudassir</h1>
+    <>
+      <aside className="fixed left-0 top-0 z-40 hidden h-screen w-64 flex-col justify-between rounded-r-[2rem] bg-gradient-to-b from-blue-900 via-blue-700 to-blue-500 dark:bg-gradient-to-b dark:from-slate-950 dark:via-slate-900 dark:to-slate-800 p-5 shadow-[0_30px_90px_rgba(15,23,42,0.35)] lg:flex border-r border-blue-300 dark:border-slate-700/70">
+        <div>
+          {/* Profile Section */}
+          <div className="mb-6 flex flex-col items-center">
+            <div className="mb-3 h-16 w-16 overflow-hidden rounded-full border-2 border-blue-400 dark:border-cyan-400 shadow-md">
+              <img
+                src={ProfileImg}
+                alt="Mudassir Abdullah"
+                className="h-full w-full object-cover"
+              />
+            </div>
+            <h1 className="text-xl font-semibold text-white dark:text-white">Mudassir</h1>
+            <p className="mt-0.5 min-h-4 text-xs font-medium tracking-wide text-white dark:text-slate-200">
+              {typedText}
+              <span className="ml-0.5 animate-pulse">|</span>
+            </p>
+          </div>
 
-        {/* Desktop Menu */}
-        <nav className="hidden lg:flex space-x-6 text-lg">
-          {links.map((link, index) => (
-            <motion.div
-              key={link}
-              custom={index}
-              initial="hidden"
-              animate="visible"
-              variants={navVariants}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="relative group"
-            >
-              <ScrollLink
-                to={link}
-                smooth={true}
-                duration={500}
-                spy={true}
-                offset={-70}
-                activeClass="active"
-                className="cursor-pointer capitalize text-gray-700 dark:text-white transition duration-300"
-              >
-                {link}
-              </ScrollLink>
-              <span className="absolute left-0 -bottom-1 w-0 h-0.5 bg-blue-500 group-hover:w-full transition-all duration-300"></span>
-            </motion.div>
-          ))}
-        </nav>
+          <div className="mb-5 h-px bg-gradient-to-r from-slate-300 via-blue-400 dark:via-cyan-400 to-slate-300"></div>
 
-        {/* Dark Mode Button */}
-        <button
-          onClick={toggleDarkMode}
-          className="text-2xl text-blue-500 hover:text-blue-700 transition mr-4"
-        >
-          {darkMode ? <FaSun /> : <FaMoon />}
-        </button>
-
-        {/* Mobile Hamburger */}
-        <button className="text-3xl text-blue-500 lg:hidden" onClick={() => setMenuOpen(true)}>
-          <FaBars />
-        </button>
-      </div>
-
-      {/* Mobile Menu */}
-      <AnimatePresence>
-        {menuOpen && (
-          <motion.div
-            initial={{ x: '100%' }}
-            animate={{ x: 0 }}
-            exit={{ x: '100%' }}
-            transition={{ duration: 0.3 }}
-            className="fixed top-0 right-0 w-64 h-full bg-white dark:bg-gray-800 shadow-lg flex flex-col p-6 z-50"
-          >
-            <button className="text-3xl text-blue-500 mb-8 self-end" onClick={() => setMenuOpen(false)}>
-              <FaTimes />
-            </button>
-
-            <nav className="flex flex-col gap-6 text-lg">
-              {links.map((link, index) => (
+          <nav className="flex flex-col gap-1.5">
+            {links.map((link, index) => {
+              const IconComponent = link.icon;
+              return (
                 <motion.div
-                  key={link}
+                  key={link.name}
                   custom={index}
                   initial="hidden"
                   animate="visible"
-                  variants={mobileNavVariants}
+                  variants={navVariants}
                   whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
+                  whileTap={{ scale: 0.98 }}
                 >
                   <ScrollLink
-                    to={link}
+                    to={link.name}
                     smooth={true}
                     duration={500}
                     spy={true}
                     offset={-70}
-                    onClick={() => setMenuOpen(false)}
                     activeClass="active"
-                    className="cursor-pointer capitalize text-gray-700 dark:text-white transition duration-300 hover:text-blue-500"
+                    className="group cursor-pointer flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium capitalize text-white dark:text-slate-200 transition duration-300 hover:bg-blue-300 dark:hover:bg-cyan-500/15 hover:text-white dark:hover:text-white"
                   >
-                    {link}
+                    <IconComponent className="text-sm text-white dark:text-slate-300 transition group-hover:scale-110 group-hover:text-white dark:group-hover:text-cyan-300" />
+                    <span>{link.name}</span>
                   </ScrollLink>
                 </motion.div>
-              ))}
-            </nav>
-          </motion.div>
-        )}
-      </AnimatePresence>
+              );
+            })}
+          </nav>
+        </div>
 
-      {/* Scroll to Top Button */}
+        <div className="space-y-3 border-t border-slate-200 dark:border-slate-700 pt-4">
+          <button
+            onClick={toggleDarkMode}
+            className="flex cursor-pointer w-full items-center justify-center gap-2 rounded-lg bg-blue-600 dark:bg-cyan-500 px-3 py-2 text-sm font-medium text-white transition duration-300 hover:bg-blue-500 dark:hover:bg-cyan-400"
+          >
+            {darkMode ? <FaSun /> : <FaMoon />}
+            <span>{darkMode ? 'Light' : 'Dark'} Mode</span>
+          </button>
+          <p className="text-center text-[11px] text-slate-600 dark:text-slate-300">© 2024 Mudassir</p>
+        </div>
+      </aside>
+
       {showScrollButton && (
         <motion.button
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           whileHover={{ scale: 1.1 }}
           onClick={() => scroll.scrollToTop({ smooth: true, duration: 500 })}
-          className="fixed bottom-6 right-6 p-3 bg-blue-500 text-white rounded-full shadow-lg hover:bg-blue-700 transition z-50"
+          className="fixed bottom-6 right-8 z-50 rounded-full bg-slate-900 p-3 text-cyan-300 shadow-lg transition hover:bg-slate-800"
         >
           <FaArrowUp />
         </motion.button>
       )}
 
-      {/* Active link underline styling */}
       <style>{`
         .active {
-          color: #3B82F6; /* blue-500 */
+          background: rgba(34, 211, 238, 0.16);
+          color: #ffffff;
           font-weight: 600;
-        }
-        .active::after {
-          content: '';
-          display: block;
-          width: 100%;
-          height: 2px;
-          background-color: #3B82F6;
-          margin-top: 4px;
-          transition: width 0.3s;
+          border-left: 3px solid #22d3ee;
+          padding-left: calc(0.75rem - 3px);
+          box-shadow: inset 0 0 0 1px rgba(34, 211, 238, 0.15);
         }
       `}</style>
-    </header>
+    </>
   );
 }

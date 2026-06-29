@@ -36,12 +36,12 @@ export default function SkillsPage() {
   return (
     <div
       ref={ref}
-      className="min-h-screen flex flex-col items-center justify-center bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-white p-8 gap-12 mt-24 transition-colors duration-300"
+      className="min-h-screen flex flex-col items-center justify-center bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-white p-8 gap-12 transition-colors duration-300"
     >
-      <h2 className="text-4xl font-bold text-center text-blue-600 mb-4" data-aos="fade-down">
+      <h2 className="text-4xl font-bold text-center text-blue-600 " data-aos="fade-down">
         Technical Skills
       </h2>
-      <p className="text-center text-gray-600 dark:text-gray-300 mb-8" data-aos="fade-down">
+      <p className="text-center text-gray-600 dark:text-gray-300 mb-1" data-aos="fade-down">
         My expertise in modern web development technologies
       </p>
 

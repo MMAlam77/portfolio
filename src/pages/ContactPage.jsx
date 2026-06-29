@@ -180,8 +180,8 @@ const ContactPage = () => {
         </form>
       </div>
 
-      {/* Floating WhatsApp Button (Left side now) */}
-      <div className="fixed bottom-6 left-6 z-50 group">
+      {/* Floating WhatsApp Button */}
+      <div className="fixed bottom-6 right-6 z-50 group">
         {/* Pulse Glow Effect */}
         <div className="absolute inset-0 rounded-full bg-green-400 opacity-75 blur-lg animate-ping"></div>
 
@@ -195,16 +195,10 @@ const ContactPage = () => {
                      flex items-center justify-center"
         >
           <FaWhatsapp size={28} />
-
-          {/* 🔴 Unread Badge */}
-          <span className="absolute -top-1 -right-1 bg-red-600 text-white text-xs font-bold
-                           px-2 py-0.5 rounded-full shadow-md animate-bounce">
-            1
-          </span>
         </a>
 
         {/* Tooltip */}
-        <span className="absolute left-16 bottom-1/2 translate-y-1/2 
+        <span className="absolute right-16 bottom-1/2 translate-y-1/2 
                          bg-gray-800 text-white text-sm px-3 py-1 rounded-lg shadow-lg opacity-0
                          group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
           Chat with me on WhatsApp
