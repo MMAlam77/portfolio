@@ -1,234 +1,135 @@
-import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { FaExternalLinkAlt, FaGithub } from "react-icons/fa";
 import ProjectImg1 from "../assets/project1.png";
 import ProjectImg2 from "../assets/project2.png";
-import "aos/dist/aos.css";
-import AOS from "aos";
+import MahRozImage from "../assets/mah-roz-beauty-salon.png";
+import AyanMobileImage from "../assets/ayan-mobile.png";
+
+const projects = [
+  {
+    title: "E-Commerce Store",
+    description:
+      "A modern shopping platform with product browsing, user authentication, cart management, and checkout flows.",
+    image: ProjectImg1,
+    demoUrl: "https://ecom-omega-eosin.vercel.app/",
+    technologies: ["React", "Node.js", "MongoDB", "Tailwind CSS"],
+  },
+  {
+    title: "MB Plays",
+    description:
+      "A responsive entertainment platform for discovering and watching Turkish series with Urdu subtitles.",
+    image: ProjectImg2,
+    demoUrl: "https://mb-plays.vercel.app/",
+    technologies: ["React", "Tailwind CSS", "Node.js"],
+  },
+  {
+    title: "Mah Roz Beauty Salon",
+    description:
+      "An elegant beauty-salon website that highlights bridal services, salon expertise, testimonials, and an AI beauty advisor.",
+    image: MahRozImage,
+    demoUrl: "https://beauty-saloon-peach.vercel.app/",
+    technologies: ["React", "Responsive Design", "AI Advisor"],
+  },
+  {
+    title: "Ayan Mobile",
+    description:
+      "A polished mobile-store experience for browsing premium used phones, accessories, product listings, and customer services.",
+    image: AyanMobileImage,
+    demoUrl: "https://ayan-mobiles.vercel.app/",
+    technologies: ["React", "E-Commerce", "Responsive Design"],
+  },
+];
+
+const githubUrl = "https://github.com/MMAlam77/portfolio";
 
 export default function ProjectsPage() {
-  const [loading, setLoading] = useState({ project1: false, project2: false });
-
-  useEffect(() => {
-    AOS.init({ duration: 1000 });
-  }, []);
-
-  const handleDemoClick = (project) => {
-    setLoading((prev) => ({ ...prev, [project]: true }));
-
-    setTimeout(() => {
-      if (project === "project1") {
-        window.open("https://ecom-omega-eosin.vercel.app/", "_blank");
-      } else if (project === "project2") {
-        window.open("https://mb-plays.vercel.app/", "_blank");
-      }
-      setLoading((prev) => ({ ...prev, [project]: false }));
-    }, 800);
-  };
-
   return (
-    <div className="min-h-screen w-full overflow-x-hidden overflow-y-auto bg-gray-200 dark:bg-gray-900 text-gray-900 dark:text-white flex flex-col items-center p-6 gap-8 scroll-mt-24 transition-colors duration-300">
-      {/* Heading */}
-      <motion.h2
-        initial={{ opacity: 0, y: -20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        viewport={{ once: true }}
-        className="text-3xl sm:text-4xl font-bold text-center text-blue-600 mb-1"
-      >
-        Featured Projects
-      </motion.h2>
-
-      <motion.p
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.1 }}
-        viewport={{ once: true }}
-        className="text-center text-sm sm:text-base text-gray-600 dark:text-gray-300 mb-6 max-w-2xl"
-      >
-        Showcasing my best work in web development and design
-      </motion.p>
-
-      {/* Projects Section */}
-      <div className="flex flex-col gap-10 w-full max-w-7xl">
-        {/* Project 1 */}
-        <motion.div
-          initial={{ opacity: 0, x: -50 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.7 }}
+    <section
+      id="projects"
+      className="min-h-screen w-full scroll-mt-24 overflow-x-hidden bg-gray-200 px-4 py-10 text-gray-900 transition-colors duration-300 dark:bg-gray-900 dark:text-white sm:px-6"
+    >
+      <div className="mx-auto max-w-7xl">
+        <motion.h2
+          initial={{ opacity: 0, y: -20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="flex flex-col lg:flex-row items-center gap-6"
+          className="mb-2 text-center text-3xl font-bold text-blue-600 sm:text-4xl"
         >
-          <motion.img
-            whileHover={{ scale: 1.05 }}
-            transition={{ duration: 0.4 }}
-            src={ProjectImg1}
-            alt="E-Commerce Store"
-            className="w-full lg:w-1/2 h-[200px] object-cover rounded-lg shadow-lg"
-          />
+          Featured Projects
+        </motion.h2>
 
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.7, delay: 0.1 }}
-            viewport={{ once: true }}
-            className="flex flex-col gap-3 w-full lg:w-1/2"
-          >
-            <h3 className="text-xl sm:text-2xl font-bold text-gray-800 dark:text-white">
-              E-Commerce Store
-            </h3>
-            <p className="text-sm sm:text-base text-gray-700 dark:text-gray-300">
-              A fully functional e-commerce platform built using React, Node.js,
-              MongoDB, and Tailwind CSS. Features seamless user experience,
-              modern design, product management, and secure checkout.
-            </p>
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+          viewport={{ once: true }}
+          className="mx-auto mb-8 max-w-2xl text-center text-sm text-gray-600 dark:text-gray-300 sm:text-base"
+        >
+          A selection of web experiences built with modern, responsive design.
+        </motion.p>
 
-            <div className="flex flex-wrap gap-2 mt-1">
-              {["React", "Node.js", "MongoDB", "Tailwind CSS", "Express"].map(
-                (tech, index) => (
-                  <motion.span
-                    key={index}
-                    whileHover={{ scale: 1.05 }}
-                    className="bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-300 px-2.5 py-1 rounded-full text-xs font-medium"
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:gap-8">
+          {projects.map((project, index) => (
+            <motion.article
+              key={project.title}
+              tabIndex={0}
+              initial={{ opacity: 0, y: 28 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: index * 0.08 }}
+              viewport={{ once: true, amount: 0.2 }}
+              whileHover={{ y: -6 }}
+              className="group overflow-hidden rounded-2xl bg-white shadow-lg transition-shadow duration-300 hover:shadow-2xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:bg-gray-800 dark:focus:ring-offset-gray-900"
+            >
+              <div className="relative aspect-[16/9] overflow-hidden bg-gray-900">
+                <img
+                  src={project.image}
+                  alt={`${project.title} website preview`}
+                  className="h-full w-full object-cover transition duration-500 group-hover:scale-110"
+                />
+
+                <div className="absolute inset-0 flex items-center justify-center gap-3 bg-slate-950/70 p-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus:opacity-100 group-focus-within:opacity-100 group-active:opacity-100">
+                  <a
+                    href={project.demoUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 rounded-lg bg-blue-600 px-4 py-2 text-sm font-semibold text-white shadow-lg transition hover:scale-105 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-white"
                   >
-                    {tech}
-                  </motion.span>
-                )
-              )}
-            </div>
+                    <FaExternalLinkAlt /> Live Demo
+                  </a>
+                  <a
+                    href={githubUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 rounded-lg bg-gray-700 px-4 py-2 text-sm font-semibold text-white shadow-lg transition hover:scale-105 hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-white"
+                  >
+                    <FaGithub /> View Code
+                  </a>
+                </div>
+              </div>
 
-            <ul className="list-disc pl-4 text-sm text-gray-700 dark:text-gray-300 space-y-1">
-              <li>Modern Product Display</li>
-              <li>Responsive Design</li>
-              <li>User Authentication</li>
-              <li>Shopping Cart & Checkout</li>
-              <li>Dynamic Product Management</li>
-            </ul>
-
-            {/* Buttons */}
-            <div className="flex flex-wrap gap-2 mt-3">
-              <motion.button
-                whileHover={{ scale: 1.05, y: -2 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={() => handleDemoClick("project1")}
-                className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg font-semibold text-sm hover:bg-blue-700 shadow-md transition"
-              >
-                <FaExternalLinkAlt className="text-sm" />
-                {loading.project1 ? "Loading..." : "Live Demo"}
-              </motion.button>
-
-              <motion.a
-                whileHover={{ scale: 1.05, y: -2 }}
-                whileTap={{ scale: 0.95 }}
-                href="https://github.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 px-4 py-2 bg-gray-700 dark:bg-gray-700 text-white rounded-lg font-semibold text-sm hover:bg-gray-800 shadow-md transition"
-              >
-                <FaGithub className="text-sm" /> View Code
-              </motion.a>
-            </div>
-          </motion.div>
-        </motion.div>
-        {/* ================= PROJECT 2 ================= */}
-
-        <motion.div
-          initial={{ opacity: 0, x: 80 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: false, amount: 0.3 }}
-          transition={{ duration: 0.8 }}
-          className="flex flex-col lg:flex-row-reverse items-center gap-6"
-        >
-
-          <motion.img
-            initial={{ opacity: 0, x: 80 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: false, amount: 0.3 }}
-            transition={{ duration: 0.8 }}
-            whileHover={{ scale: 1.05 }}
-            src={ProjectImg2}
-            alt="MB Plays"
-            className="w-full lg:w-1/2 h-[200px] object-cover rounded-lg shadow-lg"
-          />
-
-          <motion.div
-            initial={{ opacity: 0, x: -80 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: false, amount: 0.3 }}
-            transition={{ duration: 0.8, delay: 0.15 }}
-            className="flex flex-col gap-3 w-full lg:w-1/2"
-          >
-
-            <h3 className="text-xl sm:text-2xl font-bold text-gray-800 dark:text-white">
-              Watch All Turkish Series with MB Plays
-            </h3>
-
-            <p className="text-sm sm:text-base text-gray-700 dark:text-gray-300">
-              A responsive Turkish series website where users can watch
-              Turkish series with Urdu subtitles. Built using React,
-              Tailwind CSS and Node.js for a smooth user experience.
-            </p>
-
-            <div className="flex flex-wrap gap-2 mt-1">
-
-              {["React", "Tailwind CSS", "Node.js"].map((tech) => (
-
-                <motion.span
-                  key={tech}
-                  initial={{ opacity: 0, scale: 0.7 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: false, amount: 0.3 }}
-                  transition={{ duration: 0.3 }}
-                  whileHover={{ scale: 1.1 }}
-                  className="bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-300 px-2.5 py-1 rounded-full text-xs font-medium"
-                >
-                  {tech}
-                </motion.span>
-
-              ))}
-
-            </div>
-
-            <ul className="list-disc pl-4 text-sm text-gray-700 dark:text-gray-300 space-y-1">
-              <li>Audience-Friendly Playing Animations</li>
-              <li>Responsive Design</li>
-              <li>All Turkish Series Available</li>
-              <li>User-Friendly Interface</li>
-            </ul>
-
-            <div className="flex flex-wrap gap-2 mt-3">
-
-              <motion.button
-                whileHover={{ scale: 1.05, y: -3 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={() => handleDemoClick("project2")}
-                className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg font-semibold text-sm hover:bg-blue-700 shadow-md"
-              >
-                <FaExternalLinkAlt />
-                {loading.project2 ? "Loading..." : "Live Demo"}
-              </motion.button>
-
-              <motion.a
-                whileHover={{ scale: 1.05, y: -3 }}
-                whileTap={{ scale: 0.95 }}
-                href="https://github.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 px-4 py-2 bg-gray-700 text-white rounded-lg font-semibold text-sm hover:bg-gray-800 shadow-md"
-              >
-                <FaGithub />
-                View Code
-              </motion.a>
-
-            </div>
-
-          </motion.div>
-
-        </motion.div>
-
+              <div className="p-5">
+                <h3 className="text-xl font-bold text-gray-800 dark:text-white">
+                  {project.title}
+                </h3>
+                <p className="mt-2 text-sm leading-relaxed text-gray-600 dark:text-gray-300">
+                  {project.description}
+                </p>
+                <div className="mt-4 flex flex-wrap gap-2">
+                  {project.technologies.map((technology) => (
+                    <span
+                      key={technology}
+                      className="rounded-full bg-blue-100 px-2.5 py-1 text-xs font-medium text-blue-700 dark:bg-blue-900/30 dark:text-blue-300"
+                    >
+                      {technology}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </motion.article>
+          ))}
+        </div>
       </div>
-
-    </div>
+    </section>
   );
 }
-        

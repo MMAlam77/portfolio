@@ -11,7 +11,7 @@ function App() {
   return (
     <div className="flex flex-col min-h-screen overflow-x-hidden bg-gray-100 dark:bg-gray-900 transition-colors duration-300">
       <Navbar />
-      <main className="flex-grow overflow-x-hidden bg-gray-100 dark:bg-gray-900 transition-colors duration-300 lg:ml-60">
+      <main className="flex-grow overflow-x-hidden bg-gray-100 dark:bg-gray-900 transition-colors duration-300 lg:ml-60 pt-16 lg:pt-0">
         <section id="home" className="min-h-screen">
           <Home />
         </section>

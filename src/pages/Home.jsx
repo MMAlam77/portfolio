@@ -119,7 +119,7 @@ export default function Home() {
       {/* Jumping Arrow */}
       <motion.div
         onClick={handleScroll}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 cursor-pointer text-3xl"
+        className="relative mt-3 self-center cursor-pointer text-3xl lg:absolute lg:bottom-8 lg:left-1/2 lg:mt-0 lg:-translate-x-1/2"
         animate={{ y: [0, -15, 0], opacity: [1, 0.7, 1] }}
         transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
         whileHover={{ scale: 1.2 }}

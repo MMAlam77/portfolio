@@ -40,13 +40,13 @@ export default function AboutPage() {
     <div
       id="about"
       ref={ref}
-      className="flex flex-col lg:flex-row items-center justify-center px-4 sm:px-8 py-6 gap-6 overflow-x-hidden transition-colors duration-300 bg-gradient-to-r from-gray-100 via-gray-200 to-gray-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 text-gray-900 dark:text-white"
+      className="flex w-full flex-col items-center justify-center gap-6 overflow-x-hidden bg-gradient-to-r from-gray-100 via-gray-200 to-gray-100 px-4 py-6 text-gray-900 transition-colors duration-300 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 dark:text-white sm:px-8 lg:flex-row"
     >
       {/* Image Section */}
       <motion.div
         initial={{ opacity: 0, scale: 0.9 }}
         animate={imageAnimation}
-        className="w-1/2 max-w-xs sm:max-w-xs lg:max-w-sm"
+        className="w-full max-w-[10rem] sm:max-w-xs lg:max-w-sm"
         data-aos="zoom-in"
       >
         <div className="aspect-[3/4] bg-white dark:bg-gray-800 shadow-[0_20px_50px_rgba(0,0,0,0.3)] rounded-lg overflow-hidden transition-transform hover:scale-105">
@@ -60,12 +60,12 @@ export default function AboutPage() {
 
       {/* Content Section */}
       <motion.div
-        initial={{ opacity: 0, x: 50 }}
+        initial={{ opacity: 0, y: 30 }}
         animate={contentAnimation}
-        className="flex-1 max-w-2xl space-y-4 text-center lg:text-left"
+        className="w-full min-w-0 max-w-2xl space-y-4 px-1 text-center lg:flex-1 lg:text-left"
         data-aos="fade-left"
       >
-        <h2 className="text-2xl sm:text-3xl font-bold mb-3 text-blue-600 animate-pulse">
+        <h2 className="mb-3 break-words text-xl font-bold text-blue-600 animate-pulse sm:text-3xl">
           Passionate About{" "}
           <span className="text-blue-800 dark:text-blue-400">Creating</span>
         </h2>
@@ -131,7 +131,7 @@ export default function AboutPage() {
             whileInView="visible"
             whileHover="hover"
             viewport={{ once: true }}
-            className="flex flex-col items-center p-6 bg-white dark:bg-gray-800 rounded-lg shadow-lg w-full max-w-[10rem] text-center transition-all cursor-pointer"
+            className="flex w-full max-w-[10rem] cursor-pointer flex-col items-center rounded-lg bg-white p-4 text-center shadow-lg transition-all dark:bg-gray-800 sm:p-6"
             data-aos="fade-up"
           >
             <FaCode className="text-blue-500 text-2xl mb-3" />
